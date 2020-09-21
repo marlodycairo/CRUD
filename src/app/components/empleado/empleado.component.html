@@ -1,0 +1,20 @@
+<h2 class="m-4">Información de: {{ empleado.nombre }}</h2>
+
+<form (submit)="actualizarEmpleado( cedula.value, nombre.value, fecha.value )">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Identificación</label>
+            <input #cedula type="number" {{ empleado.cedula }} class="form-control">
+        </div>
+        <div class="form-group col-md-8">
+            <label>Nombre Completo</label>
+            <input #nombre type="text" {{ empleado.nombreEmpleado }} class="form-control">
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label>Fecha Nacimiento</label>
+        <input #fecha type="datetime" {{ empleado.fechaNacimiento | date }} class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Actualizar</button>
+    <button type="button" class="btn btn-primary">Volver</button>
+</form>
