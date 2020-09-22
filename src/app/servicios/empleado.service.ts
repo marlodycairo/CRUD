@@ -74,7 +74,7 @@ export class EmpleadoService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json, text/json'
       })
     };
     const empleadoTemporal = {
@@ -83,9 +83,9 @@ export class EmpleadoService {
 
     delete empleadoTemporal.id;
 
-    const url = `https://localhost:44355/api/TblEmpleados/${ empleado }`;
+    const url = `https://localhost:44355/api/TblEmpleados/${ empleado.id }`;
 
-    return this.http.put<Empleado>( url, empleado.id )
+    return this.http.put<Empleado>( url, empleadoTemporal )
           .pipe();
   }
 

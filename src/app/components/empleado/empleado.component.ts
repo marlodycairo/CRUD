@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { EmpleadoService } from '../../servicios/empleado.service';
 import { Empleado } from '../../models/empleado';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -33,46 +34,59 @@ export class EmpleadoComponent implements OnInit {
             console.log( this.empleado );
 
           });
-
     });
   }
 
   ngOnInit(): void {
   }
 
-  // this.empleadosService.getEmpleados()
-  //     .subscribe( (datos: any) => {
-  //       this.empleados = datos;
-  //       console.log( 'Los empleados son: ', datos );
-  //     } );
-
-  // editarEmpleado( id: number ) {
-
-  //   this.empleadoService.getEmpleado( id )
-  //       .subscribe( dato => {
-  //         console.log( dato );
-  //         this.empleado = dato;
-  //       });
-  // }
-
-
-  actualizarEmpleado( idEmpleado: number, nombreEmp: string, fecha: Date ) {
-
-    console.log('datos empleado: ' , idEmpleado, nombreEmp, fecha );
+  guardar( form: NgForm ): void {
+    if ( form.invalid ) {
+      console.log('Formulario no válido.');
+      return;
+    }
 
     this.objetoprueba = {
-      cedula: idEmpleado,
-      nombreEmpleado: nombreEmp,
-      fechaNacimiento: fecha
-    };
+                          cedula: this.empleado.cedula,
+                          nombre: this.empleado.nombreEmpleado,
+                          fechanacimiento: this.empleado.fechaNacimiento
+                        };
 
-    console.log( this.objetoprueba );
+    console.log( this.infoempleado );
 
-    this.empleado = this.objetoprueba;
-    console.log( this.empleado );
+    this.empleadoService.updateEmpleado( this.infoempleado )
+      .subscribe( resp => {
+        console.log( resp );
+      });
 
-    this.empleadoService.updateEmpleado( this.empleado )
-        .subscribe( datoempleado => this.empleados.push( datoempleado ) );
+      // this.empleadoServicio.addEmpleado( this.objetoprueba )
+      //   .subscribe( datoempleado => this.empleados.push( datoempleado ) );
+
   }
+
+  // crearEmpleado( idEmpleado: number, nombreEmp: string, fecha: Date ) {
+
+  //   console.log('datos empleado: ' , idEmpleado, nombreEmp, fecha );
+
+  //   this.objetoprueba = {
+  //     cedula: idEmpleado,
+  //     nombreEmpleado: nombreEmp,
+  //     fechaNacimiento: fecha
+  //   };
+
+    // this.empleado =
+    //               {
+    //                 id: idEmpleado,
+    //                 nombre: nombreEmp,
+    //                 fechanacimiento: fecha
+    //               };
+
+    // console.log( this.objetoprueba );
+
+    // console.log( this.empleado );
+
+  //   this.empleadoServicio.addEmpleado( this.objetoprueba )
+  //       .subscribe( datoempleado => this.empleados.push( datoempleado ) );
+  // }
 
 }
