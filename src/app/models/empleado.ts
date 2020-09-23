@@ -1,7 +1,7 @@
 export interface Empleado {
-    id: number;
-    nombre: string;
-    fechanacimiento: Date;
+    cedula: number;
+    nombreEmpleado: string;
+    fechaNacimiento: Date;
     // pais: string;
     // usuario: string;
     // fechaingreso: Date;

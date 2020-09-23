@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.empleadosService.getEmpleados()
-        .subscribe( info => {
+        .subscribe( (info: any ) => {
           this.empleados = info;
 
           console.log( 'Listado empleados: ', this.empleados );

@@ -33,7 +33,7 @@ export class EmpleadoService {
     return this.getUrl('api/TblEmpleados')
         .pipe(
           map( (dato: any[]) =>
-              dato.map( empleado => ( { id: empleado.cedula, nombre: empleado.nombreEmpleado, fechanacimiento: empleado.fechaNacimiento })
+              dato.map( empleado => ( empleado)
               )
             )
         ) ;
@@ -72,20 +72,20 @@ export class EmpleadoService {
   // PUT: Update
   updateEmpleado( empleado: Empleado ): Observable<Empleado> {
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json, text/json'
-      })
-    };
-    const empleadoTemporal = {
-      ...empleado
-    };
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json, text/json'
+    //   })
+    // };
+    // const empleadoTemporal = {
+    //   ...empleado
+    // };
 
-    delete empleadoTemporal.id;
+    // delete empleadoTemporal.cedula;
 
-    const url = `https://localhost:44355/api/TblEmpleados/${ empleado.id }`;
+    const url = `https://localhost:44355/api/TblEmpleados/${ empleado.cedula }`;
 
-    return this.http.put<Empleado>( url, empleadoTemporal )
+    return this.http.put<Empleado>( url, empleado )
           .pipe();
   }
 
