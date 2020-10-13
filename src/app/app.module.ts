@@ -12,7 +12,6 @@ import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { EmpleadoTarjetaComponent } from './components/empleado-tarjeta/empleado-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { EmpleadoTarjetaComponent } from './components/empleado-tarjeta/empleado
     HomeComponent,
     EmpleadoComponent,
     NavbarComponent,
-    EmpleadoFormComponent,
-    EmpleadoTarjetaComponent
+    EmpleadoFormComponent
   ],
   imports: [
     BrowserModule,

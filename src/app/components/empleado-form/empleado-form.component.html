@@ -1,20 +1,65 @@
-<h2 class="m-5">Formulario de Registro Nuevo Empleado</h2>
+<div class="body3 padding" style="justify-self: center;">
+    <h2 class="m-5" style="align-content: center;">Ingreso Nuevo Empleado</h2>
 
-<form (submit)="crearEmpleado( cedula.value, nombre.value, fecha.value ); cedula.value=''; nombre.value=''; fecha.value=''">
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <label>Identificación</label>
-            <input #cedula type="number" class="form-control">
-        </div>
-        <div class="form-group col-md-8">
-            <label>Nombre Completo</label>
-            <input #nombre type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-group col-md-3">
-        <label>Fecha Nacimiento</label>
-        <input #fecha type="date" class="form-control">
-    </div>
+    <form class="col-10" (submit)="crearEmpleado( cedula.value, nombre.value, fechanacimiento.value, cargo.value, usuario.value, pais.value, fechacontrato.value, propina.value, customSwitch1.value ); cedula.value=''; nombre.value=''; 
+    fechanacimiento.value=''; cargo.value=''; usuario.value=''; pais.value=''; fechacontrato.value=''; propina.value=''; customSwitch1.value=''">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Identificación</label>
+                <input #cedula type="number" class="form-control">
+            </div>
 
-    <button type="submit" class="btn btn-primary">Guardar Empleado</button>
-</form>
+            <div class="form-group col-md-6">
+                <label>Nombre Completo</label>
+                <input #nombre type="text" class="form-control">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Fecha Nacimiento</label>
+                <input #fechanacimiento type="date" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label>Cargo empleo</label>
+                <input #cargo type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Usuario</label>
+                <input #usuario type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Pais</label>
+                <input #pais type="text" class="form-control">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Fecha Contratación</label>
+                <input #fechacontrato type="date" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Porcentaje propina</label>
+                <input #propina type="number" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="custom-control custom-switch">
+                    <input #customSwitch1 type="checkbox" name="customSwitch1" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1">Status</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar Empleado</button>
+    </form>
+</div>

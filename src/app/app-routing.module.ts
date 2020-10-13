@@ -3,13 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { EmpleadoComponent } from './components/empleado/empleado.component';
 import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component';
-import { EmpleadoTarjetaComponent } from './components/empleado-tarjeta/empleado-tarjeta.component';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'empleado/:id', component: EmpleadoComponent },
   { path: 'empleadoform', component: EmpleadoFormComponent },
-  { path: 'empleadotarjeta', component: EmpleadoTarjetaComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

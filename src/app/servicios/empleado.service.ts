@@ -42,11 +42,6 @@ export class EmpleadoService {
   getEmpleado( id: number ) {
 
     return this.getUrl(`api/TblEmpleados/${ id }`);
-          // .pipe(
-          //   map( (info: any) => {
-          //     this.empleados = info;
-          //   })
-          // );
   }
 
 

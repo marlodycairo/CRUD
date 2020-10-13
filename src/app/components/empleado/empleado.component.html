@@ -6,15 +6,17 @@
             <label>Identificación</label>
             <input name="cedula" type="number" [(ngModel)]='infoempleado.cedula' class="form-control">
         </div>
+
         <div class="form-group col-md-8">
             <label>Nombre Completo</label>
-            <input name="nombreEmpleado" type="text" [(ngModel)]='infoempleado.nombreEmpleado' class="form-control">
+            <input name="nombreEmpleado" type="text" [(ngModel)]='infoempleado.nombreEmpleado' class="form-control" required>
         </div>
     </div>
+
     <div class="form-group col-md-3">
         <label>Fecha Nacimiento</label>
-        <input name="fechaNacimiento" type="datetime" [(ngModel)]='infoempleado.fechaNacimiento' class="form-control">
+        <input name="fechaNacimiento" type="datetime" [(ngModel)]='infoempleado.fechaNacimiento' class="form-control" required>
     </div>
     <button type="submit" class="btn btn-success">Actualizar</button>
-    <button type="button" class="btn btn-primary">Volver</button>
+    <button type="button" class="btn btn-primary" [routerLink]="['/home']">Volver</button>
 </form>
