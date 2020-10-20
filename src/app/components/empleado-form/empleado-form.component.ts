@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmpleadoService } from '../../servicios/empleado.service';
 import { Empleado } from '../../models/empleado';
 import { Router } from '@angular/router';
+import { PaisesServiceService } from '../../servicios/paises-service.service';
+import { CargoEmpleadosService } from '../../servicios/cargo-empleados.service';
 
 @Component({
   selector: 'app-empleado-form',
@@ -16,16 +18,41 @@ export class EmpleadoFormComponent implements OnInit {
 
   objetoprueba: any = {};
 
+  paises: any[] = [];
+
+  cargos: any[] = [];
+
   constructor( private empleadoServicio: EmpleadoService,
-               private router: Router ) { }
+               private router: Router,
+               private paisesService: PaisesServiceService,
+               private cargosEmpleados: CargoEmpleadosService ) { }
 
   ngOnInit(): void {
+    this.paisesService.getPaises()
+        .subscribe( info => {
+        this.paises = info;
+
+        this.paises.unshift({
+          nombre: 'Seleccione País'
+        });
+        console.log( this.paises );
+        });
+
+    this.cargosEmpleados.getCargosEmpleados()
+        .subscribe( datos => {
+          this.cargos = datos;
+
+          this.cargos.unshift({
+            cargoEmpleado: 'Seleccione Cargo'
+          });
+          console.log(this.cargos);
+        });
   }
 
   crearEmpleado( idEmpleado: number, nombreEmp: string, fecha: Date, cargo: string, usuario: string, pais: string, 
-                 fechacontrato: Date, propina: number, estadoempleado: boolean ) {
+                 fechacontrato: Date ) {
 
-    console.log('datos empleado: ' , idEmpleado, nombreEmp, fecha, cargo, usuario, pais, fechacontrato, propina, estadoempleado );
+    console.log('datos empleado: ' , idEmpleado, nombreEmp, fecha, cargo, usuario, pais, fechacontrato );
 
     this.objetoprueba = {
       cedula: idEmpleado,
@@ -34,9 +61,9 @@ export class EmpleadoFormComponent implements OnInit {
       cargo: cargo,
       usuario: usuario,
       pais: pais,
-      fechaingreso: fechacontrato,
-      porcentajepropina: propina,
-      status: estadoempleado
+      fechaingreso: fechacontrato
+      // status: status,
+      // porcentajepropina: propina
     };
 
     console.log( this.objetoprueba );

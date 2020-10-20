@@ -7,6 +7,6 @@ export interface Empleado {
     fechaingreso: Date;
     // area: string;
     cargo: string;
-    porcentajepropina: number;
-    status: boolean;
+    // porcentajepropina: number;
+    // status: boolean;
 }

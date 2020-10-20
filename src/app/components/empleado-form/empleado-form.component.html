@@ -1,64 +1,139 @@
 <div class="body3 padding" style="justify-self: center;">
     <h2 class="m-5" style="align-content: center;">Ingreso Nuevo Empleado</h2>
 
-    <form class="col-10" (submit)="crearEmpleado( cedula.value, nombre.value, fechanacimiento.value, cargo.value, usuario.value, pais.value, fechacontrato.value, propina.value, customSwitch1.value ); cedula.value=''; nombre.value=''; 
-    fechanacimiento.value=''; cargo.value=''; usuario.value=''; pais.value=''; fechacontrato.value=''; propina.value=''; customSwitch1.value=''">
+    <form class="col-10" (submit)="crearEmpleado( cedula.value, nombre.value, fechanacimiento.value, cargo.value, usuario.value, pais.value, fechacontrato.value ); cedula.value=''; nombre.value=''; fechanacimiento.value=''; cargo.value=''; usuario.value=''; pais.value=''; fechacontrato.value=''; ">
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label>Identificación</label>
-                <input #cedula type="number" class="form-control">
+                <input name="cedula" [class.is-invalid]="cedula.invalid && cedula.touched" [ngModel]="objetoprueba.cedula" required type="number" pattern=".{1,6}" class="form-control" #cedula="ngModel">
+
+                <div *ngIf="cedula.invalid && cedula.touched" class="alert alert-danger">
+                    <div *ngIf="cedula.errors.required">
+                        documento es requerido
+                    </div>
+                    <div *ngIf="cedula.errors.pattern">
+                        debe contener 6 numeros
+                    </div>
+                </div>
             </div>
 
             <div class="form-group col-md-6">
                 <label>Nombre Completo</label>
-                <input #nombre type="text" class="form-control">
+                <input #nombre="ngModel" type="text" name="nombre" class="form-control" [ngModel]="objetoprueba.nombreEmpleado" required pattern=".{8,30}">
+                <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+                    <div *ngIf="nombre.errors.required">
+                        nombre es requerido
+                    </div>
+                    <div *ngIf="nombre.errors.pattern">
+                        el nombre debe contener hasta 40 caracteres
+                    </div>
+                </div>
             </div>
 
             <div class="form-group col-md-3">
                 <label>Fecha Nacimiento</label>
-                <input #fechanacimiento type="date" class="form-control">
+                <input #fechanacimiento="ngModel" type="date" class="form-control" [ngModel]="objetoprueba.fechaNacimiento" name="fechanacimiento" required>
+                <div *ngIf="fechanacimiento.invalid && fechanacimiento.touched" class="alert alert-danger">
+                    <div *ngIf="fechanacimiento.errors.required">
+                        fecha es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Cargo</label>
+
+                <select #cargo="ngModel" name="cargo" [ngModel]="objetoprueba.cargo" class="form-control" [disabled]="cargos.length === 0" required>
+                    <option *ngFor="let cargo of cargos" [value]="cargo.cargoEmpleado">{{ cargo.cargoEmpleado }}</option>
+                </select>
+                <div *ngIf="cargo.invalid && cargo.touched" class="alert alert-danger">
+                    <div *ngIf="cargo.errors.required">
+                        cargo es requerido
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>Usuario</label>
+                <input #usuario="ngModel" name="usuario" [ngModel]="objetoprueba.usuario" type="text" class="form-control" required>
+                <div *ngIf="usuario.invalid && usuario.touched" class="alert alert-danger">
+                    <div *ngIf="usuario.errors.required">
+                        usuario es requerido
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="form-row">
 
-            <div class="form-group col-md-6">
-                <label>Cargo empleo</label>
-                <input #cargo type="text" class="form-control">
-            </div>
-            <div class="form-group col-md-3">
-                <label>Usuario</label>
-                <input #usuario type="text" class="form-control">
-            </div>
-            <div class="form-group col-md-3">
-                <label>Pais</label>
-                <input #pais type="text" class="form-control">
+            <!-- <div class="form-group col-md-3">
+                <label>Cargo</label>
+                <div class="dropdown">
+                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown
+                    </button>
+                    <div #cargo class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button [value]="cargo.cargoEmpleado" *ngFor="let cargo of cargos" class="dropdown-item" type="button">{{ cargo.cargoEmpleado }}</button>
+                    </div>
+                </div>
             </div>
 
+            <div class="form-group col-md-5">
+                <label>Cargo empleo</label>
+                <input #cargo type="text" class="form-control">
+            </div> -->
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Pais</label>
+
+                <select #pais="ngModel" name="pais" [ngModel]="objetoprueba.pais" class="form-control" required>
+                    <option *ngFor="let pais of paises" [value]="pais.nombre">{{ pais.nombre }}</option>
+                </select>
+                <div *ngIf="pais.invalid && pais.touched" class="alert alert-danger">
+                    <div *ngIf="pais.errors.required">
+                        pais es requerido
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label>Fecha Contratación</label>
-                <input #fechacontrato type="date" class="form-control">
+                <input #fechacontrato="ngModel" name="fechacontrato" [ngModel]="objetoprueba.fechaingreso" type="date" class="form-control" required>
+                <div *ngIf="fechacontrato.invalid && fechacontrato.touched" class="alert alert-danger">
+                    <div *ngIf="fechacontrato.errors.required">
+                        fecha de contrato es requerido
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="form-row">
+        <!-- <div class="form-row">
             <div class="form-group col-md-3">
                 <label>Porcentaje propina</label>
-                <input #propina type="number" class="form-control">
+                <input #propina="ngModel" name="propina" [(ngModel)]="objetoprueba.porcentajepropina" type="number" class="form-control" required>
+                <div *ngIf="propina.invalid && propina.touched" class="alert alert-danger">
+                    <div *ngIf="propina.errors.required">
+                        propina es requerido
+                    </div>
+                </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="form-row">
+        <!-- <div class="form-row">
             <div class="form-group col-md-3">
                 <div class="custom-control custom-switch">
                     <input #customSwitch1 type="checkbox" name="customSwitch1" class="custom-control-input" id="customSwitch1">
                     <label class="custom-control-label" for="customSwitch1">Status</label>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <button type="submit" class="btn btn-success">Guardar Empleado</button>
     </form>

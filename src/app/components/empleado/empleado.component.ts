@@ -15,7 +15,7 @@ export class EmpleadoComponent implements OnInit {
   empleados: Empleado[] = [];
 
   infoempleado: Empleado = {cedula : 0, fechaNacimiento: null, nombreEmpleado: '', pais: '', 
-                            usuario: '', fechaingreso: null, cargo: '', porcentajepropina: 0, status: false };
+                            usuario: '', fechaingreso: null, cargo: '' };
   cedula: number;
   nombreEmpleado: string;
   fechaNacimiento: Date;
@@ -24,8 +24,8 @@ export class EmpleadoComponent implements OnInit {
   fechaingreso: Date;
   // area: string;
   cargo: string;
-  porcentajepropina: number;
-  status: false;
+  // porcentajepropina: number;
+  // status: false;
 
   empleado: any = {};
 
@@ -41,6 +41,11 @@ export class EmpleadoComponent implements OnInit {
             this.infoempleado.cedula = info['cedula'];
             this.infoempleado.fechaNacimiento = info['fechaNacimiento'];
             this.infoempleado.nombreEmpleado = info['nombreEmpleado'];
+            this.infoempleado.pais = info['pais'];
+            this.infoempleado.usuario = info['usuario'];
+            this.infoempleado.fechaingreso = info['fechaingreso'];
+            this.infoempleado.cargo = info['cargo'];
+            // this.infoempleado.porcentajepropina = info['porcentajepropina'];
           });
     });
   }
