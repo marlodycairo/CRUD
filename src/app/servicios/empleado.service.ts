@@ -6,7 +6,6 @@ import { catchError, map } from 'rxjs/operators';
 import { Empleado } from '../models/empleado';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +21,8 @@ export class EmpleadoService {
 
   getUrl( query: string ) {
 
-    const url = `https://localhost:44355/${ query }`;
+    // const url = `https://localhost:44355/${ query }`;
+    const url = `https://proyectocrud.azurewebsites.net/${ query }`;
 
     return this.http.get( url );
   }
@@ -57,7 +57,8 @@ export class EmpleadoService {
     //     'Content-Type': 'application/json, text/json'
     //   })
     // };
-    const url = 'https://localhost:44355/api/TblEmpleados';
+    // const url = 'https://localhost:44355/api/TblEmpleados';
+    const url = 'https://proyectocrud.azurewebsites.net/api/TblEmpleados';
 
     return this.http.post<Empleado>( url, empleado )
                 .pipe();
@@ -78,7 +79,8 @@ export class EmpleadoService {
 
     // delete empleadoTemporal.cedula;
 
-    const url = `https://localhost:44355/api/TblEmpleados/${ empleado.cedula }`;
+    // const url = `https://localhost:44355/api/TblEmpleados/${ empleado.cedula }`;
+    const url = `https://proyectocrud.azurewebsites.net/api/TblEmpleados/${ empleado.cedula }`;
 
     return this.http.put<Empleado>( url, empleado )
           .pipe();
@@ -93,7 +95,8 @@ export class EmpleadoService {
         'Content-Type': 'application/json'
       })
     };
-    const url = `https://localhost:44355/api/TblEmpleados/${ empleado }`;
+    // const url = `https://localhost:44355/api/TblEmpleados/${ empleado }`;
+    const url = `https://proyectocrud.azurewebsites.net/api/TblEmpleados/${ empleado }`;
 
     return this.http.delete( url, httpOptions );
   }

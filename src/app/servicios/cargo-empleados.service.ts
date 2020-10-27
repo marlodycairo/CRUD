@@ -12,7 +12,8 @@ export class CargoEmpleadosService {
   constructor( private http: HttpClient ) { }
 
   getCargosEmpleados() {
-    const url = 'https://localhost:44355/api/TblCargos';
+    // const url = 'https://localhost:44355/api/TblCargos';
+    const url = 'https://proyectocrud.azurewebsites.net/api/TblCargos';
     return this.http.get( url )
                .pipe(
                  map( (response: any[]) => {
